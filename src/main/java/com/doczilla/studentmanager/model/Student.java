@@ -6,15 +6,18 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import org.springframework.data.annotation.*;
 import org.springframework.data.relational.core.mapping.Column;
+import org.springframework.data.relational.core.mapping.Table;
 import org.springframework.util.Assert;
+
 import java.util.Date;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(value = "students")
 public class Student {
     @Id
-    private Integer id;
+    private Long id;
     @Column("first_name")
     @NonNull
     private String firstName;
@@ -31,29 +34,12 @@ public class Student {
     @NonNull
     private String studentGroup;
 
-    public int getId() {
+    public Long getId() {
         Assert.notNull(id, "Student must have an id");
         return id;
     }
 
     public boolean isNew() {
         return this.id == null;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        Student that = (Student) o;
-        return id != null && id.equals(that.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return id == null ? 0 : id;
     }
 }
