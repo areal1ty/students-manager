@@ -2,6 +2,8 @@ package com.doczilla.studentmanager.controller;
 
 import com.doczilla.studentmanager.model.Student;
 import com.doczilla.studentmanager.service.StudentService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +16,7 @@ public class StudentController {
 
     private final StudentService studentService;
 
+    @Autowired
     public StudentController(StudentService studentService) {
         this.studentService = studentService;
     }
@@ -21,19 +24,19 @@ public class StudentController {
     @PostMapping
     public ResponseEntity<Student> create(@RequestBody Student student) {
         Student savedStudent = studentService.save(student);
-        return ResponseEntity.ok(savedStudent);
+        return new ResponseEntity<>(savedStudent, HttpStatus.CREATED);
     }
 
     @PutMapping
     public ResponseEntity<Student> update(@RequestBody Student student) {
         Student updatedStudent = studentService.update(student);
-        return ResponseEntity.ok(updatedStudent);
+        return updatedStudent != null ? ResponseEntity.ok(updatedStudent) : ResponseEntity.notFound().build();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Student> getUserById(@PathVariable Long id) {
-        Optional<Student> user = studentService.get(id);
-        return user.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    public ResponseEntity<Student> get(@PathVariable Long id) {
+        Optional<Student> student = Optional.ofNullable(studentService.get(id));
+        return student.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @GetMapping

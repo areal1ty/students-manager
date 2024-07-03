@@ -1,43 +1,39 @@
 package com.doczilla.studentmanager.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.*;
 import org.springframework.data.annotation.*;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
-import org.springframework.util.Assert;
 
-import java.util.Date;
+import java.time.LocalDate;
 
-@Data
+@Setter
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(value = "students")
 public class Student {
     @Id
+    @JsonProperty("id")
     private Long id;
     @Column("first_name")
-    @NonNull
+    @JsonProperty("firstName")
     private String firstName;
     @Column("last_name")
-    @NonNull
+    @JsonProperty("lastName")
     private String lastName;
     @Column("patronymic")
-    @NonNull
+    @JsonProperty("patronymic")
     private String patronymic;
     @Column("date_of_birth")
-    @NonNull
-    private Date dateOfBirth;
+    @JsonProperty("dateOfBirth")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    private LocalDate dateOfBirth;
     @Column("student_group")
-    @NonNull
+    @JsonProperty("studentGroup")
     private String studentGroup;
-
-    public Long getId() {
-        Assert.notNull(id, "Student must have an id");
-        return id;
-    }
 
     public boolean isNew() {
         return this.id == null;

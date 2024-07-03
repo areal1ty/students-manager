@@ -1,5 +1,5 @@
 function getStudents() {
-    const apiUrl = `http://localhost:8080/students`;
+    const apiUrl = `http://localhost:8081/students`;
 
     fetch(apiUrl)
         .then(response => {
@@ -32,12 +32,12 @@ function renderStudentCard(student) {
     element_4.appendChild(element_5)
     element_3.appendChild(element_4)
     const element_6 = document.createElement('P')
-    const element_7 = document.createTextNode(student.bd_date)
+    const element_7 = document.createTextNode(student.dateOfBirth)
     element_6.appendChild(element_7)
     element_3.appendChild(element_6)
     element_0.appendChild(element_3)
     const element_8 = document.createElement('SPAN')
-    const element_9 = document.createTextNode(student.study_group)
+    const element_9 = document.createTextNode(student.student_group)
     element_8.appendChild(element_9)
     element_0.appendChild(element_8)
     const element_10 = document.createElement('SECTION')
@@ -65,7 +65,7 @@ function modalHandler() {
 }
 
 function deleteStudent(id) {
-    fetch('http://localhost:8080/students', {
+    fetch('http://localhost:8081/students', {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
@@ -108,7 +108,7 @@ document.querySelector('form').addEventListener('submit', function (event) {
         student_group: group
     };
 
-    fetch('http://localhost:8080/students', {
+    fetch('http://localhost:8081/students', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -132,7 +132,7 @@ document.querySelector('form').addEventListener('submit', function (event) {
 });
 
 function updateStudent(id, updatedData) {
-    fetch(`http://localhost:8080/students/${id}`, {
+    fetch(`http://localhost:8081/students/${id}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
