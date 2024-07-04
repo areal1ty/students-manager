@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Students</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<main>
+    <button onclick="showModal()">Добавить студента</button>
+    <article class="students"></article>
+    <article class="modal">
+        <article class="modal_content">
+            <h1 id="modalTitle">Добавить студента</h1>
+            <form id="studentForm">
+                <section class="inputs">
+                    <div class="input">
+                        <label for="lastName">Фамилия:</label>
+                        <input type="text" name="lastName" id="lastName" placeholder="Введите фамилию">
+                    </div>
+                    <div class="input">
+                        <label for="firstName">Имя:</label>
+                        <input type="text" name="firstName" id="firstName" placeholder="Введите имя">
+                    </div>
+                    <div class="input">
+                        <label for="patronymic">Отчество:</label>
+                        <input type="text" name="patronymic" id="patronymic" placeholder="Введите отчество">
+                    </div>
+                    <div class="input">
+                        <label for="studentGroup">Группа:</label>
+                        <input type="text" name="studentGroup" id="studentGroup" placeholder="Введите группу">
+                    </div>
+                    <div class="input">
+                        <label for="dateOfBirth">Дата рождения:</label>
+                        <input type="date" name="dateOfBirth" id="dateOfBirth">
+                    </div>
+                </section>
+                <input type="submit" value="Сохранить">
+            </form>
+            <span onclick="closeModal()" class="close">
+                <div></div>
+            </span>
+        </article>
+    </article>
+</main>
+<script src="js/scripts.js" defer></script>
+</body>
+</html>

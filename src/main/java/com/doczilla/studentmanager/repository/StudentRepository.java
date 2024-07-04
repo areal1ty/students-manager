@@ -1,8 +1,6 @@
 package com.doczilla.studentmanager.repository;
 
 import com.doczilla.studentmanager.model.Student;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.dao.support.DataAccessUtils;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -12,7 +10,6 @@ import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 
 import java.util.List;
 
-@org.springframework.stereotype.Repository
 public class StudentRepository implements com.doczilla.studentmanager.repository.Repository {
 
     private static final BeanPropertyRowMapper<Student> ROW_MAPPER = BeanPropertyRowMapper.newInstance(Student.class);
